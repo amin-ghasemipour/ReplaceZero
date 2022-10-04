@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ReplaceZero
@@ -10,15 +11,20 @@ namespace ReplaceZero
     {
         static void Main(string[] args)
         {
+            string result = ConvertZeroToStar(1050);
+            Console.WriteLine($"result of {nameof(ConvertZeroToStar)}:{result}");
+
+            result = ConvertZeroToStarByRegex(1050);
+            Console.WriteLine($"result of {nameof(ConvertZeroToStarByRegex)}:{result}");
+            Console.ReadKey();
         }
 
 
         /// <summary>
         /// Replce Zero in number by using DivideByZeroException
         /// </summary>
-        private static void ConvertZeroToStar()
+        private static string ConvertZeroToStar(int number)
         {
-            int number = 1050;
             string numberStr = number.ToString();
             string result = "";
             foreach (var chr in numberStr)
@@ -33,18 +39,17 @@ namespace ReplaceZero
                     result += "*";
                 }
             }
-            Console.WriteLine(result);
+            return result;
         }
 
         /// <summary>
         /// Replce Zero in number by using Regex
         /// </summary>
-        private static void ConvertZeroToStarByRegex()
+        private static string ConvertZeroToStarByRegex(int number)
         {
-            int number = 1050;
             string numberStr = number.ToString();
             string result = Regex.Replace(numberStr, @"0", "*");
-            Console.WriteLine(result);
+            return result;
         }
     }
 }
